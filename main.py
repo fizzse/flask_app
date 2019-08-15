@@ -1,6 +1,11 @@
-from flask import Flask ,json,request
+from flask import Flask 
+from book.view import bookR
+from hero.view import heroR
 
-import views,views1
+app = Flask(__name__)
+
+app.register_blueprint(bookR)
+app.register_blueprint(heroR)
 
 if __name__ == '__main__':
-    views.app.run()
+   app.run()
