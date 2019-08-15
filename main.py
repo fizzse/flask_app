@@ -1,8 +1,11 @@
-from flask import Flask 
-from book.view import bookR
-from hero.view import heroR
+from flask import Flask
 
-app = Flask(__name__)
+from app.book.view import bookR
+from app.hero.view import heroR
+from app import GenApp
+
+app = GenApp(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:s@106.12.147.72/fizzse?charset=utf8'
 
 app.register_blueprint(blueprint=bookR, url_prefix='/v1')
 app.register_blueprint(blueprint=heroR, url_prefix='/v1')
@@ -12,4 +15,4 @@ def pong():
     return 'pong!'
 
 if __name__ == '__main__':
-   app.run()
+    app.run()
