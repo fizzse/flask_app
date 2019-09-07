@@ -1,14 +1,12 @@
 from flask import Flask
 
 from app.book.view import bookR
-from app.hero.view import heroR
+from app.user.view import userR
 from app import GenApp
 
 app = GenApp(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:s@106.12.147.72/fizzse?charset=utf8'
-
-app.register_blueprint(blueprint=bookR, url_prefix='/v1')
-app.register_blueprint(blueprint=heroR, url_prefix='/v1')
+app.register_blueprint(blueprint=bookR, url_prefix='/v1/books')
+app.register_blueprint(blueprint=userR, url_prefix='/v1/users')
 
 @app.route('/v1/ping')
 def pong():
