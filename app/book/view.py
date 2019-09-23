@@ -1,6 +1,6 @@
 from flask import Blueprint, request, json
 from .. import db
-from ..model.model import Book
+from .models import Book
 bookR = Blueprint('book',__name__)
 
 # 创建图书

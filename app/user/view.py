@@ -1,5 +1,5 @@
 from flask import Blueprint, request,json,session
-from ..model.model import User
+from .models import User
 from .. import db
 userR = Blueprint('/users',__name__)
 
