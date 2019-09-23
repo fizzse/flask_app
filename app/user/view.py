@@ -1,7 +1,7 @@
 from flask import Blueprint, request,json,session
 from .models import User
 from .. import db
-userR = Blueprint('/users',__name__)
+userR = Blueprint('user',__name__)
 
 @userR.route('/ping')
 def Pong():
