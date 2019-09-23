@@ -4,7 +4,7 @@ from app.book.view import bookR
 from app.user.view import userR
 from app import GenApp
 
-app = GenApp(__name__)
+app = GenApp('development')
 app.register_blueprint(blueprint=bookR, url_prefix='/v1/books')
 app.register_blueprint(blueprint=userR, url_prefix='/v1/users')
 
