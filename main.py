@@ -8,10 +8,5 @@ app = GenApp('development')
 app.register_blueprint(blueprint=bookR, url_prefix='/v1/books')
 app.register_blueprint(blueprint=userR, url_prefix='/v1/users')
 
-@app.route('/v1/ping')
-def pong():
-    return 'pong!'
-
-
 if __name__ == '__main__':
     app.run()
