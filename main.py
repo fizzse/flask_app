@@ -1,12 +1,6 @@
-from flask import Flask
+from app import register_app
 
-from app.book.view import bookR
-from app.user.view import userR
-from app import GenApp
-
-app = GenApp('development')
-app.register_blueprint(blueprint=bookR, url_prefix='/v1/books')
-app.register_blueprint(blueprint=userR, url_prefix='/v1/users')
+app = register_app('development')
 
 if __name__ == '__main__':
     app.run()
