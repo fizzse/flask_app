@@ -1,8 +1,8 @@
 from flask import Blueprint, request, json
-from .models import Book
+from .models import Book, Hero
 
 bookR = Blueprint('book', __name__)
-
+heroR = Blueprint('hero', __name__)
 
 # 创建图书
 @bookR.route('/', methods=['POST'])
@@ -16,6 +16,19 @@ def create_book():
 
 @bookR.route('/<book_id>', methods=['GET'])
 def book_info(book_id):
-    # return str(book_id)
-    name = request.args.get('name')
-    return json.jsonify(name=name, kongfu='猿王枪')
+    book = Book.query_by_id(book_id)
+
+    heroes = []
+    for v in book.heroes:
+        heroes.append({'name': v.name, 'trick': v.trick})
+    res = {"title": book.title, "heroes": heroes}
+    return json.jsonify(res)
+
+
+@heroR.route('/<hero_id>', methods=['GET'])
+def hero_info(hero_id):
+    hero = Hero.query_by_id(hero_id)
+
+    h = {'name': hero.name, 'trick': hero.trick}
+    res = {"title": hero.book.title, "hero": h}
+    return json.jsonify(res)

@@ -11,7 +11,8 @@ def register_app(config_name):
     db.init_app(app)
 
     from .user.view import userR
-    from .book.view import bookR
+    from .book.view import bookR,heroR
     app.register_blueprint(blueprint=userR, url_prefix='/v1/users')
     app.register_blueprint(blueprint=bookR, url_prefix='/v1/books')
+    app.register_blueprint(blueprint=heroR, url_prefix='/v1/heroes')
     return app

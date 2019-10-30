@@ -5,7 +5,7 @@ userR = Blueprint('user', __name__)
 
 
 @userR.route('/ping')
-def Pong():
+def pong():
     return 'pong pong...'
 
 
@@ -38,7 +38,5 @@ def login():
 
 @userR.route('/index', methods=['GET'])
 def index():
-    info = []
-    info["account"] = session["account"]
-    info["name"] = session['name']
+    info = {"account": session["account"], "name": session['name']}
     return info
