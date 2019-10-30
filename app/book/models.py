@@ -15,6 +15,13 @@ class Book(db.Model):
     def query_by_id(book_id):
         return Book.query.filter_by(id=book_id).first()
 
+    @staticmethod
+    def list(params):
+        conn = Book.query
+        if params['name'] != '':
+            conn = conn.filter_by(title=params['name'])
+        return conn.all()
+
 
 class Hero(db.Model):
     __tablename__ = 'hero'

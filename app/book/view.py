@@ -4,6 +4,7 @@ from .models import Book, Hero
 bookR = Blueprint('book', __name__)
 heroR = Blueprint('hero', __name__)
 
+
 # 创建图书
 @bookR.route('/', methods=['POST'])
 def create_book():
@@ -12,6 +13,19 @@ def create_book():
     book.title = data["name"]
     book.create_book()
     return data
+
+
+# 图书列表
+@bookR.route('/', methods=['GET'])
+def book_list():
+    params = {}
+    name = request.args.get('name', "")
+    params['name'] = name
+    books = Book.list(params)
+    res = []
+    for book in books:
+        res.append({'id': book.id, 'title': book.title})
+    return json.jsonify(res)
 
 
 @bookR.route('/<book_id>', methods=['GET'])
