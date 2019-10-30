@@ -1,12 +1,14 @@
 from flask import Blueprint, request, json, session
 from .models import User
+from ..utils.vcode import generate_code
 
 userR = Blueprint('user', __name__)
+verificationR = Blueprint('verification', __name__)
 
 
-@userR.route('/ping')
-def pong():
-    return 'pong pong...'
+@verificationR.route('/code')
+def code():
+    return generate_code()
 
 
 @userR.route('/', methods=['POST'])
@@ -33,7 +35,7 @@ def login():
         session['name'] = user.name
         return "success"
 
-    return "haha"
+    return "null"
 
 
 @userR.route('/index', methods=['GET'])
