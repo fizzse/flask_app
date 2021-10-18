@@ -1,6 +1,6 @@
 from flask import Blueprint, request, json, session
-from .models import User
-from ..utils.vcode import generate_code
+from biz.user.models import User
+from biz.utils.vcode import generate_code
 
 userR = Blueprint('user', __name__)
 verificationR = Blueprint('verification', __name__)

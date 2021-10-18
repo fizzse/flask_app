@@ -1,5 +1,5 @@
 from flask import Blueprint, request, json
-from .models import Book, Hero
+from biz.book.models import Book, Hero
 
 bookR = Blueprint('book', __name__)
 heroR = Blueprint('hero', __name__)
