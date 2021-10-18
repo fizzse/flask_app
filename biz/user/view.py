@@ -1,5 +1,5 @@
 from flask import Blueprint, request, json, session
-from biz.user.models import User
+from biz.user.models import User,UserAuth
 from biz.utils.vcode import generate_code
 
 userR = Blueprint('user', __name__)
@@ -25,17 +25,28 @@ def create_user():
 @userR.route('/login', methods=['POST'])
 def login():
     data = json.loads(request.data)
-    user = User.query_by_account(data['account'])
-
-    if user is None:
+    #user = User.query_by_account(data['account'])
+    authInfo =  UserAuth.query_by_auth(data['name'],data['value'])
+    if authInfo is None:
+        print('auth is null')
         return "null"
 
-    if user.verify_password(data['password']):
-        session["account"] = user.account
-        session['name'] = user.name
-        return "success"
+    user = authInfo.user
 
-    return "null"
+    if user is None:
+        print('user is null')
+        return "null"
+
+    if user.verify_password(data['value']):
+        session = {}
+        session['name'] = user.name
+        session['auth'] = user.auths[0].value
+        return session
+
+    session = {}
+    session['name'] = user.name
+    session['auth'] = user.auths[0].value
+    return session
 
 
 @userR.route('/index', methods=['GET'])

@@ -43,17 +43,19 @@ class BaseConfig(object):
 
 class DevelopmentConfig(BaseConfig):
     SECRET_KEY = '123456789012345678901234'
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:s@106.13.76.237/fizzse?charset=utf8'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:s@localhost/fizzse?charset=utf8'
+    #SQLALCHEMY_DATABASE_URI = 'mysql://root:s@localhost/fizzse?charset=utf8'
 
 
 class TestingConfig(BaseConfig):
     TESTING = True
     WTF_CSRF_ENABLED = False
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:s@106.13.76.237/fizzse?charset=utf8'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:s@localhost/fizzse?charset=utf8'
 
 
 class ProductionConfig(BaseConfig):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:s@106.13.76.237/fizzse?charset=utf8'
+    SECRET_KEY = '123456789012345678901234'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:s@localhost/fizzse?charset=utf8'
 
 
 config = {

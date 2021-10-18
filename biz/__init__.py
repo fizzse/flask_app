@@ -18,3 +18,10 @@ def register_app(config_name):
     app.register_blueprint(blueprint=verificationR, url_prefix='/v1/verification')
 
     return app
+
+def migrate_db(config_name):
+    app = Flask(__name__)
+    app.config.from_object(config[config_name])
+    db.init_app(app)
+
+    db.create_all()
