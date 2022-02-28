@@ -1,4 +1,4 @@
-from biz import db
+from svc.app import db
 
 
 class Book(db.Model):

@@ -1,4 +1,4 @@
-from biz import register_app
+from svc.app import register_app
 
 server = register_app('development')
 
